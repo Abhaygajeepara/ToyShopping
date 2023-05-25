@@ -2,6 +2,10 @@ import logo from './logo.svg';
 import React, { Component } from 'react';
 import "./App.css"
 import { ProductList } from './Model/Product/Product';
+import { useNavigate } from 'react-router-dom';
+import { BrowserRouter ,Routes, Route,  } from 'react-router-dom';
+import ProductScreen from './Screens/Product';  
+import HomeScreen from './Screens/Home';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,27 +17,15 @@ class App extends Component {
     }
   }
   render() {
-    const arrayChunk = (arr, n) => {
-      const array = arr.slice();
-      const chunks = [];
-      while (array.length) chunks.push(array.splice(0, n));
-      return chunks;
-    };
-
-    return (
-      <div className='body'>
-        <AppHeader/>
-        {arrayChunk([...Array(this.state.proList.list.length).keys()], 3).map((row, i) => (
-          <div key={i} class="grid">
-            {row.map((col, i) => (
-              <ItemCard item={this.state.proList.list[col]} ></ItemCard>
-            ))}
-          </div>
-        ))}
-<AppFooter></AppFooter>
-
-      </div>
-    );
+    return (<>
+    <BrowserRouter>
+    <Routes>
+        <Route index element= {<HomeScreen/>}></Route>
+        <Route path='homeScreen' element={<HomeScreen/>}/>
+        <Route path='productScreen' element={<ProductScreen/>}/>
+    </Routes>
+    </BrowserRouter>
+    </>);
   }
 
 }
@@ -74,6 +66,7 @@ function ItemCard(props) {
 function AppHeader(props){
   return <div className='app-header'>
   <img src={logo} alt='logo' className='applogo'></img>
+  
 <button class="signout"><i class="fa fa-sign-out"></i></button>
 
 

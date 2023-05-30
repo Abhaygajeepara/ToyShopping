@@ -20,6 +20,12 @@ class AuthService extends React.Component {
         localStorage.setItem(KeyWords.Users,usreRef);
        
     }
+    updateUser = (userData)=>{
+      
+      const usreRef =  JSON.stringify(userData);
+        localStorage.setItem(KeyWords.Users,usreRef);
+       
+    }
     getUser = ()=>{
         const user = localStorage.getItem(KeyWords.Users);
         

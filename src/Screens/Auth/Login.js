@@ -4,9 +4,10 @@ import "../CSS/Login.css";
 import KeyWords from '../../Common/GeneralEnum';
 import AuthService from '../../Service/AuthService';
 import { User } from '../../Model/User/User';
-import Popup from '../../Common/Popup';
+import { useNavigate } from 'react-router-dom';
 
 class Login extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +22,13 @@ class Login extends Component {
     };
     
   }
+componentDidMount(){
 
+  const authService = new AuthService();
+  if(authService.getKeyboard(KeyWords.IsLogin)){
+      window.history.back();
+     }
+}
   handleLoginUsernameChange = (event) => {
     this.setState({ loginUsername: event.target.value });
   };
@@ -31,12 +38,16 @@ class Login extends Component {
   };
 
   handleLogin = () => {
+    
+   
     const authService = new AuthService();
     const user = authService.getUser();
+   
     if(authService.getKeyboard(KeyWords.Users)){
     if( this.state.loginUsername === user.gmail  && user.password === this.state.loginPassword){
       authService.changeLoginStatus(true);
-      window.location.reload();
+      window.history.back();
+    
     }
     else{
       window.alert('invalid credentials');

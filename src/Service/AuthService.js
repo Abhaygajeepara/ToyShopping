@@ -87,7 +87,7 @@ return "Guest"
     
 
   render() {
-    return null; // Class components must have a render method, but it can be empty for utility classes
+    return null; 
   }
 }
 

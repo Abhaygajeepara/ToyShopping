@@ -52,10 +52,7 @@ const ProfilePage = () => {
     const address =new Address(street,city,province);
     user.address = address;
     auth.updateUser(user);
-    // Address update logic
-    // Perform address update API call or logic here
-
-    // Show success message
+    
     setSuccess(true);
   };
 

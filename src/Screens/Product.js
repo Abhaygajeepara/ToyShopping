@@ -33,6 +33,10 @@ const ProductPage = () => {
       setSelectedImage(null);
     }
   };
+  const [inputValue, setInputValue] = useState('');
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
   const index= id - 1;
   getData();
   return (
@@ -48,6 +52,17 @@ const ProductPage = () => {
         <h2 className="product-name">{productList.list[index].name}</h2>
         <p className="product-description">{productList.list[index].des}</p>
         <p className="product-price">Price: {productList.list[index].price}</p>
+        <div >
+          <input className='textarea' type='text' list='listid' value={inputValue}
+            onChange={handleChange} />
+          <datalist id='listid' className='listid'>
+            <option class='label1' value='1' />
+            <option class='label2' value='2' />
+            <option class='label3' value='3' />
+          </datalist>
+
+        </div>
+     
       </div>
 
       <h3 className="comments-heading">Customer Reviews</h3>

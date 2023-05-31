@@ -81,8 +81,8 @@ function ItemCard(props) {
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
-            <option label='label2' value='2' />
-            <option label='label3' value='3' />
+            <option class='label2' value='2' />
+            <option class='label3' value='3' />
           </datalist>
 
         </div>

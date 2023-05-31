@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router-dom';
  import React, { useState } from 'react';
 import { ProductList } from '../Model/Product/Product';
@@ -48,24 +47,43 @@ const ProductPage = () => {
       <div className="product-image-container">
         <img src={productList.list[index].img} alt="Product" className="product-image" />
       </div>
-      <div className="product-details">
+      <div>
+        <div className="product-details">
         <h2 className="product-name">{productList.list[index].name}</h2>
-        <p className="product-description">{productList.list[index].des}</p>
-        <p className="product-price">Price: {productList.list[index].price}</p>
+
+        <h2 className="product-description">{productList.list[index].des}</h2>
+        <p className="product-price">Price: ${productList.list[index].price}</p>
+
+       
         <div >
-          <input className='textarea' type='text' list='listid' value={inputValue}
+          <input className='product-textarea' type='text' list='listid' placeholder={productList.list[index].quantity} value={inputValue}
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
             <option class='label2' value='2' />
             <option class='label3' value='3' />
           </datalist>
+          <button class="update-button" onClick={() => {
+                      const authService = new AuthService();
+                       const getDummyData = authService.getDummyData();
+                      // const cartData = authService.getCart();
 
+                      // if (inputValue != null) {
+                      //   getDummyData.list[ index].quantity = inputValue;
+                      // }
+                      // authService.updateCart(cartData);
+                      // authService.updateDummyData(getDummyData);
+                      authService.addcartAndUpdate(inputValue, getDummyData.list[ index])
+                      window.location.reload();
+                    }}><i class="fas fa-sync-alt"></i> Update</button>
         </div>
      
-      </div>
 
-      <h3 className="comments-heading">Customer Reviews</h3>
+      </div>
+      </div>
+    </div> 
+    <div className="comment-input">
+      <h2 className="comments-heading">Customer Reviews</h2>
       {comments.length === 0 ? (
         <p className="no-comments">No customer reviews yet.</p>
       ) : (
@@ -78,8 +96,6 @@ const ProductPage = () => {
           ))}
         </ul>
       )}
-
-      <div className="comment-input">
         <textarea
           placeholder="Write a customer review"
           value={newComment}
@@ -88,8 +104,7 @@ const ProductPage = () => {
         />
         <input type="file" accept="image/*" onChange={handleImageChange} className="image-input" />
         <button onClick={handleAddComment} className="add-comment-btn">Submit</button>
-      </div>
-    </div>
+      </div> 
     </div>
   );
 };

@@ -4,11 +4,15 @@ import AppHeader from './Common/AppHeader';
 import CommonNavationBar from './Common/NavigationBar';
 import './CSS/Profile.css';
 import AuthService from '../Service/AuthService';
+import KeyWords from '../Common/GeneralEnum';
 const ProfilePage = () => {
     let user = new User();
     const auth = new AuthService();
     const getUserDate = ()=>{
-        
+      const authService = new AuthService();
+      if(!authService.getKeyboard(KeyWords.IsLogin)){
+        window.history.back();
+       }
         user = auth.getUser();
        
     }

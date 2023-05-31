@@ -39,9 +39,11 @@ export default class Home extends Component {
       <div className='body'>
         <AppHeader />
         <CommonNavationBar></CommonNavationBar>
+        <br></br>
         <div className="bannerImg">
           <img src="https://edge.disstg.commercecloud.salesforce.com/dw/image/v2/BDFX_STG/on/demandware.static/-/Library-Sites-toys-global/default/dwedfbe4d7/images/pages/brand-pages/educational-toys-cb-header-d-e.jpg" alt="img 1"></img>
         </div>
+        <br></br>
         {arrayChunk([...Array(this.state.proList.list.length).keys()], 3).map((row, i) => (
           <div key={i} class="grid">
             {row.map((col, i) => (
@@ -58,11 +60,12 @@ export default class Home extends Component {
 }
 
 function ItemCard(props) {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState();
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value);  
   };
   const item = props.item;
+  
   return <div class="item">
 
     <Link
@@ -75,37 +78,28 @@ function ItemCard(props) {
       <div>
         <div>{item.name}</div>
         <div> {item.des}</div></div>
-      <div className='card-bottom-right'>
-        <div >
-          <input className='textarea' type='text' list='listid' value={inputValue}
+      
+    </div>
+    <div className='card-bottom-right'>
+      <h1>${item.price}</h1>
+        <div className='addcart-area' >
+          <input className='textarea' type='text' list='listid' placeholder={item.name.quantity} value={inputValue}
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
             <option class='label2' value='2' />
             <option class='label3' value='3' />
           </datalist>
+          <button className="buyButton" onClick={(() => {
+           
+           const authService = new AuthService();
+           authService.addcartAndUpdate(inputValue,item)
 
+
+          })}> Add to Cart</button>
         </div>
-        <div className='textArea'>
-          <div className="buyButton" onClick={(() => {
-            const authService = new AuthService();
-            const getDummyData = authService.getDummyData();
-            const cartData = authService.getCart();
-            if (inputValue != null) {
-              getDummyData.list[item.id - 1].quantity = inputValue;
-              cartData.addCartlist.push(item.id);
-              const uniqueList = [...new Set(cartData.addCartlist)];
-              cartData.addCartlist = uniqueList;
-            }
-            authService.updateCart(cartData);
-            authService.updateDummyData(getDummyData);
-
-
-          })}><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
         </div>
-      </div>
-    </div>
-
+        
 
 
   </div>

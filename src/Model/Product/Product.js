@@ -13,12 +13,12 @@ export class Product{
   export class ProductList{
     constructor(){
       this.list = [
-       new Product("1","toy 1","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwb6c44d8b/images/A448994F_1.jpg?sw=767&sh=767&sm=fit","2","100","0"),
-       new Product("2","toy 2","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwf2c8c7b4/images/74494824_1.jpg?sw=767&sh=767&sm=fit","2","100","0"),
-       new Product("3","toy 3","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw1456dce3/images/3C0B1B1F_1.jpg?sw=767&sh=767&sm=fit","1","100","0"),
-       new Product("4","toy 4","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw8d2b35ae/images/9E940E70_1.jpg?sw=767&sh=767&sm=fit","1","100","0"), 
-       new Product("5","toy 5","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw6896f21d/images/14DCFBC4_1.jpg?sw=767&sh=767&sm=fit","1","100","0"),
-       new Product("6","toy 6","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwd1a17986/images/9E940270_1.jpg?sw=767&sh=767&sm=fit","1","100","0"),
+       new Product("1","Just Play","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwe123516c/images/04FA7914_1.jpg?sw=767&sh=767&sm=fit","CoComelon Count with Me Wooden Clock, Recycled Wood, Learning and Education - English Edition","80","0"),
+       new Product("2","LeapFrog","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw21fdf2c7/images/1A273553_1.jpg?sw=767&sh=767&sm=fit","LeapFrog 2-in-1 LeapTop Touch Green - English Edition","129","0"),
+       new Product("3","VTech","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw1456dce3/images/3C0B1B1F_1.jpg?sw=767&sh=767&sm=fit","Vtech Explore and Write Activity Desk - Pink - Exclusive - English Edition","199","0"),
+       new Product("4","LeapFrog","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw8d2b35ae/images/9E940E70_1.jpg?sw=767&sh=767&sm=fit","LeapFrog Mr. Pencil's ABC Backpack - English Edition","49","0"), 
+       new Product("5","VTech","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw6896f21d/images/14DCFBC4_1.jpg?sw=767&sh=767&sm=fit","Vtech Touch & Teach Sea Turtle - English Edition","140","0"),
+       new Product("6","LeapFrog","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwd1a17986/images/9E940270_1.jpg?sw=767&sh=767&sm=fit","LeapFrog Learning Friends 100 words Book - Bilingual English/French Edition" ,"60","0"),
         
 
       ];

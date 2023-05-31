@@ -7,6 +7,15 @@ class AuthService extends React.Component {
        getKeyboard  = (keyword)=>  {
         return localStorage.getItem(keyword);
     }
+
+    
+    clear = ()=>{
+      localStorage.removeItem(KeyWords.Products);
+      localStorage.removeItem(KeyWords.AddCart);
+      
+      this.setDummyData();
+      this.setCart();
+    }
    changeLoginStatus = (value)=>{
         localStorage.setItem(KeyWords.IsLogin,value);
         window.location.reload();
@@ -84,7 +93,19 @@ return "Guest"
        return JSON.parse(checkKeyboardExist);
     }
     
-    
+    addcartAndUpdate=(inputValue,item)=>{
+      
+      const getDummyData = this.getDummyData();
+      const cartData = this.getCart();
+      if (inputValue != null && inputValue > 0) {
+        getDummyData.list[item.id - 1].quantity = inputValue;
+        cartData.addCartlist.push(item.id);
+        const uniqueList = [...new Set(cartData.addCartlist)];
+        cartData.addCartlist = uniqueList;
+        this.updateCart(cartData);
+        this.updateDummyData(getDummyData);
+      }
+    }
 
   render() {
     return null; 

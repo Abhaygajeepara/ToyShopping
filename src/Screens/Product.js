@@ -44,13 +44,16 @@ const ProductPage = () => {
       <div className="product-image-container">
         <img src={productList.list[index].img} alt="Product" className="product-image" />
       </div>
-      <div className="product-details">
+      <div>
+        <div className="product-details">
         <h2 className="product-name">{productList.list[index].name}</h2>
-        <p className="product-description">{productList.list[index].des}</p>
-        <p className="product-price">Price: {productList.list[index].price}</p>
+        <h2 className="product-description">{productList.list[index].des}</h2>
+        <p className="product-price">Price: ${productList.list[index].price}</p>
       </div>
-
-      <h3 className="comments-heading">Customer Reviews</h3>
+      </div>
+    </div> 
+    <div className="comment-input">
+      <h2 className="comments-heading">Customer Reviews</h2>
       {comments.length === 0 ? (
         <p className="no-comments">No customer reviews yet.</p>
       ) : (
@@ -63,8 +66,6 @@ const ProductPage = () => {
           ))}
         </ul>
       )}
-
-      <div className="comment-input">
         <textarea
           placeholder="Write a customer review"
           value={newComment}
@@ -73,8 +74,7 @@ const ProductPage = () => {
         />
         <input type="file" accept="image/*" onChange={handleImageChange} className="image-input" />
         <button onClick={handleAddComment} className="add-comment-btn">Submit</button>
-      </div>
-    </div>
+      </div> 
     </div>
   );
 };

@@ -13,12 +13,12 @@ export class Product{
   export class ProductList{
     constructor(){
       this.list = [
-       new Product("1","toy 1","https://images.pexels.com/photos/860882/pexels-photo-860882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","2","100","0"),
-       new Product("2","toy 2","https://images.pexels.com/photos/860882/pexels-photo-860882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","2","100","0"),
-       new Product("3","toy 3","https://images.pexels.com/photos/860882/pexels-photo-860882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","1","100","0"),
-       new Product("4","toy 4","https://images.pexels.com/photos/860882/pexels-photo-860882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","1","100","0"), 
-       new Product("5","toy 5","https://images.pexels.com/photos/860882/pexels-photo-860882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","1","100","0"),
-       new Product("6","toy 6","https://images.pexels.com/photos/860882/pexels-photo-860882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","1","100","0"),
+       new Product("1","toy 1","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwb6c44d8b/images/A448994F_1.jpg?sw=767&sh=767&sm=fit","2","100","0"),
+       new Product("2","toy 2","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwf2c8c7b4/images/74494824_1.jpg?sw=767&sh=767&sm=fit","2","100","0"),
+       new Product("3","toy 3","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw1456dce3/images/3C0B1B1F_1.jpg?sw=767&sh=767&sm=fit","1","100","0"),
+       new Product("4","toy 4","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw8d2b35ae/images/9E940E70_1.jpg?sw=767&sh=767&sm=fit","1","100","0"), 
+       new Product("5","toy 5","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw6896f21d/images/14DCFBC4_1.jpg?sw=767&sh=767&sm=fit","1","100","0"),
+       new Product("6","toy 6","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwd1a17986/images/9E940270_1.jpg?sw=767&sh=767&sm=fit","1","100","0"),
         
 
       ];

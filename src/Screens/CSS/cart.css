@@ -1,9 +1,12 @@
 .body {
     margin: 0;
+    background-color: white;
+    padding: 0;
   }
   .itemBox{
     border-style: solid;
-    height: 150PX;
+    color: rgb(147, 53, 27);
+    height: auto;
     display: flex ;
     text-align: start;
     align-items: center;
@@ -11,9 +14,9 @@
     margin: 10px;
   }
   .Img{
-    height: 140px;
-    width: 150px;
-    padding: 1%;
+    height: 100px;
+    width: 100px;
+    padding: 2%;
     padding-right: 10px;
   }
   .labelArea{
@@ -23,5 +26,5 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding-right: 20px;
+    padding-right: 10px;
   }

@@ -13,7 +13,7 @@ export class Product{
   export class ProductList{
     constructor(){
       this.list = [
-       new Product("1","Just Play","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwe123516c/images/04FA7914_1.jpg?sw=767&sh=767&sm=fit","CoComelon Count with Me Wooden Clock, Recycled Wood, Learning and Education - English Edition","100","0"),
+       new Product("1","Just Play","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwe123516c/images/04FA7914_1.jpg?sw=767&sh=767&sm=fit","CoComelon Count with Me Wooden Clock, Recycled Wood, Learning and Education - English Edition","CAD 100","0"),
        new Product("2","LeapFrog","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw21fdf2c7/images/1A273553_1.jpg?sw=767&sh=767&sm=fit","LeapFrog 2-in-1 LeapTop Touch Green - English Edition","100","0"),
        new Product("3","VTech","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw1456dce3/images/3C0B1B1F_1.jpg?sw=767&sh=767&sm=fit","Vtech Explore and Write Activity Desk - Pink - Exclusive - English Edition","100","0"),
        new Product("4","LeapFrog","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw8d2b35ae/images/9E940E70_1.jpg?sw=767&sh=767&sm=fit","LeapFrog Mr. Pencil's ABC Backpack - English Edition","100","0"), 

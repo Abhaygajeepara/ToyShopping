@@ -1,86 +1,104 @@
-
 .root {
   background-image: url("https://wallpapercave.com/wp/wp4061050.jpg");
 }
 
+body{
+ background-color: whitesmoke;
+}
 .product-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: rgb(223, 155, 155);
-  }
-  
-  .product-image-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .product-image {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .product-details {
-    margin-bottom: 20px;
-  }
-  
-  .product-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .product-description {
-    margin-bottom: 10px;
-  }
-  
-  .product-price {
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .comments-heading {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .no-comments {
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-  
-  .comment-list {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 20px;
-  }
-  
-  .comment-item {
-    margin-bottom: 10px;
-  }
-  
-  .comment-input {
-    margin-top: 20px;
-  }
-  
-  .comment-textarea {
-    width: 100%;
-    height: 100px;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .add-comment-btn {
-    background-color: #263e22;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .add-comment-btn:hover {
-    background-color: #75221a5e;
-  }
-  
+  margin: 0 auto;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.product-image-container {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  margin: auto 5px;
+  float: left;
+  width: 500px;
+  height: auto;
+  margin-bottom: 50px;
+}
+
+.product-details {
+  margin-bottom: 10px;
+  text-align: left; 
+  color: rebeccapurple;
+}
+
+.product-name {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 200px;
+  color: brown;
+}
+
+.product-description {
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.comments-heading {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: start;
+}
+
+.no-comments {
+  font-style: italic;
+  margin-bottom: 20px;
+  text-align: start;
+}
+
+.comment-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.comment-item {
+  margin-bottom: 20px;
+}
+
+.comment-input {
+  width: 100%;
+  padding-top: 2px;
+  padding-right: 20px;
+  clear: both; /* Add this to clear the float */
+}
+
+.image-input {
+  padding-right: 5px;
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.add-comment-btn {
+  background-color: #263e22;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-comment-btn:hover {
+  background-color: #75221a5e;
+}

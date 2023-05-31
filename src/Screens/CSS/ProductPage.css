@@ -71,18 +71,24 @@
 }
 
 .comment-input {
+
   width: auto;
   padding-top: 2px;
   padding-right: 20px;
   clear: both; 
+
+  
 }
 
 .image-input {
   padding-right: 5px;
 }
+
 .product-textarea{
   width: 100%;
 }
+
+
 .comment-textarea {
   width: 100%;
   height: 100px;
@@ -91,7 +97,9 @@
 }
 
 .add-comment-btn {
+
   background-color: var(--theme-color);
+
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -102,9 +110,11 @@
 .add-comment-btn:hover {
   background-color: #75221a5e;
 }
+
 .product-textarea{
   width: 100px;
 }
 .update-button{
   width: 100px;
 }
+

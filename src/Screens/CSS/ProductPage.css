@@ -2,9 +2,7 @@
   background-image: url("https://wallpapercave.com/wp/wp4061050.jpg");
 }
 
-body{
- background-color: whitesmoke;
-}
+
 .product-page {
   margin: 0 auto;
   padding: 10px;
@@ -73,15 +71,23 @@ body{
 }
 
 .comment-input {
-  width: 100%;
+
+  width: auto;
   padding-top: 2px;
   padding-right: 20px;
-  clear: both; /* Add this to clear the float */
+  clear: both; 
+
+  
 }
 
 .image-input {
   padding-right: 5px;
 }
+
+.product-textarea{
+  width: 100%;
+}
+
 
 .comment-textarea {
   width: 100%;
@@ -91,7 +97,9 @@ body{
 }
 
 .add-comment-btn {
-  background-color: #263e22;
+
+  background-color: var(--theme-color);
+
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -102,3 +110,11 @@ body{
 .add-comment-btn:hover {
   background-color: #75221a5e;
 }
+
+.product-textarea{
+  width: 100px;
+}
+.update-button{
+  width: 100px;
+}
+

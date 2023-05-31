@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router-dom';
  import React, { useState } from 'react';
 import { ProductList } from '../Model/Product/Product';
@@ -57,14 +56,26 @@ const ProductPage = () => {
 
        
         <div >
-          <input className='textarea' type='text' list='listid' value={inputValue}
+          <input className='product-textarea' type='text' list='listid' placeholder={productList.list[index].quantity} value={inputValue}
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
             <option class='label2' value='2' />
             <option class='label3' value='3' />
           </datalist>
+          <button class="update-button" onClick={() => {
+                      const authService = new AuthService();
+                       const getDummyData = authService.getDummyData();
+                      // const cartData = authService.getCart();
 
+                      // if (inputValue != null) {
+                      //   getDummyData.list[ index].quantity = inputValue;
+                      // }
+                      // authService.updateCart(cartData);
+                      // authService.updateDummyData(getDummyData);
+                      authService.addcartAndUpdate(inputValue, getDummyData.list[ index])
+                      window.location.reload();
+                    }}><i class="fas fa-sync-alt"></i> Update</button>
         </div>
      
 

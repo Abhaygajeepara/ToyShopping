@@ -21,39 +21,31 @@ export default function CommonNavationBar(props) {
 
         <li><Link to='/cart' class="tap"> <i class="fa fa-shopping-cart" aria-hidden="true"></i></Link></li>
         <li>
-
-          <i class="fa fa-user" id="icon" aria-hidden="true"></i>
-          <ul>
-            <li>
-              <div className="currentUser">{authService.getUserName()}</div>
-
-            </li>
-
-            {
-              !authService.getKeyboard(KeyWords.IsLogin) ?
-                <li>
-                  <Link to='/login' class="tap">Log in</Link>
-                </li> : <></>
-            }
-
-            {
-              authService.getKeyboard(KeyWords.IsLogin) ?
-                <li>
-                  <Link to='/profilePage'>Profile</Link>
-                </li> : <></>
-            }
-
-            {
-              authService.getKeyboard(KeyWords.IsLogin) ?
-                <li>
-                  <div class='tap' onClick={logOutHandler}  >LogOut</div>
-                </li> : <></>
-            }
-
-
-
-          </ul>
-        </li>
+  <i class="fa fa-user" id="icon" aria-hidden="true"></i>
+  <ul class="dropdown-menu">
+    <li>
+      <div class="currentUser">{authService.getUserName()}</div>
+    </li>
+    {
+      !authService.getKeyboard(KeyWords.IsLogin) ?
+      <li>
+        <Link to='/login' class="tap">Log in</Link>
+      </li> : <></>
+    }
+    {
+      authService.getKeyboard(KeyWords.IsLogin) ?
+      <li>
+        <Link to='/profilePage'>Profile</Link>
+      </li> : <></>
+    }
+    {
+      authService.getKeyboard(KeyWords.IsLogin) ?
+      <li>
+        <div class='tap' onClick={logOutHandler}>LogOut</div>
+      </li> : <></>
+    }
+  </ul>
+</li>   
 
       </ul>
     </nav>

@@ -20,7 +20,5 @@ export class Product{
        new Product("5","VTech","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dw6896f21d/images/14DCFBC4_1.jpg?sw=767&sh=767&sm=fit","Vtech Touch & Teach Sea Turtle - English Edition","140","0"),
        new Product("6","LeapFrog","https://www.toysrus.ca/dw/image/v2/BDFX_PRD/on/demandware.static/-/Sites-toys-master-catalog/default/dwd1a17986/images/9E940270_1.jpg?sw=767&sh=767&sm=fit","LeapFrog Learning Friends 100 words Book - Bilingual English/French Edition" ,"60","0"),
         
-
-      ];
     }
   }

@@ -7,6 +7,7 @@ import AppHeader from "./Common/AppHeader";
 import CommonNavationBar from "./Common/NavigationBar";
 import '../Screens/CSS/cart.css'
 import { ProductList } from "../Model/Product/Product";
+
 export default function Cart() {
     const [inputValue, setInputValue] = useState('');
     const handleChange = (event) => {

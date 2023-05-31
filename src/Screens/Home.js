@@ -8,6 +8,7 @@ import CommonNavationBar from '../Screens/Common/NavigationBar';
 import AppHeader from './Common/AppHeader';
 import AppFooter from './Common/AppFooter';
 import AuthService from '../Service/AuthService';
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -27,8 +28,6 @@ export default class Home extends Component {
   }
 
   render() {
-
-
     const arrayChunk = (arr, n) => {
       const array = arr.slice();
       const chunks = [];
@@ -40,9 +39,9 @@ export default class Home extends Component {
       <div className='body'>
         <AppHeader />
         <CommonNavationBar></CommonNavationBar>
-
-
-
+        <div className="bannerImg">
+          <img src="https://edge.disstg.commercecloud.salesforce.com/dw/image/v2/BDFX_STG/on/demandware.static/-/Library-Sites-toys-global/default/dwedfbe4d7/images/pages/brand-pages/educational-toys-cb-header-d-e.jpg" alt="img 1"></img>
+        </div>
         {arrayChunk([...Array(this.state.proList.list.length).keys()], 3).map((row, i) => (
           <div key={i} class="grid">
             {row.map((col, i) => (
@@ -68,12 +67,8 @@ function ItemCard(props) {
 
     <Link
       to={`productScreen/${item.id}`}
-
     >
-
-
-      <img src={item.img} alt={item.name} className="itemImg">
-
+    <img src={item.img} alt={item.name} className="itemImg">
       </img>
     </Link>
     <div className='card-bottom'>

@@ -1,9 +1,14 @@
+
+.root {
+  background-image: url("https://wallpapercave.com/wp/wp4061050.jpg");
+}
+
 .product-page {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    background-color: #f6f6f6;
+    background-color: rgb(223, 155, 155);
   }
   
   .product-image-container {
@@ -67,7 +72,7 @@
   }
   
   .add-comment-btn {
-    background-color: #ff9900;
+    background-color: #263e22;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -76,6 +81,6 @@
   }
   
   .add-comment-btn:hover {
-    background-color: #ff6600;
+    background-color: #75221a5e;
   }
   

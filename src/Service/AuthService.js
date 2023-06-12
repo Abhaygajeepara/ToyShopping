@@ -13,7 +13,7 @@ class AuthService extends React.Component {
       localStorage.removeItem(KeyWords.Products);
       localStorage.removeItem(KeyWords.AddCart);
       
-      this.setDummyData();
+      
       this.setCart();
     }
    changeLoginStatus = (value)=>{
@@ -22,7 +22,7 @@ class AuthService extends React.Component {
     }
      logout = ()=>{
          localStorage.removeItem(KeyWords.IsLogin,);
-        //  localStorage.removeItem(KeyWords.Users,);
+        //    localStorage.removeItem(KeyWords.Users,);
     }
     setUser = (user)=>{
       const usreRef =  JSON.stringify(user);
@@ -53,15 +53,15 @@ return "Guest"
         }   
     }
     
-    setDummyData = () =>{
-      const checkKeyboardExist =  localStorage.getItem(KeyWords.Products);
-      const   proList = new ProductList();
+    // setDummyData = () =>{
+    //   const checkKeyboardExist =  localStorage.getItem(KeyWords.Products);
+    //   const   proList = new ProductList();
      
-      if(!checkKeyboardExist){
-        const proRef =  JSON.stringify(proList);
-        localStorage.setItem(KeyWords.Products,proRef);
-      }
-    }
+    //   if(!checkKeyboardExist){
+    //     const proRef =  JSON.stringify(proList);
+    //     localStorage.setItem(KeyWords.Products,proRef);
+    //   }
+    // }
     updateDummyData = (proList) => {
      
       

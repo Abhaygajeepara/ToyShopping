@@ -2,30 +2,54 @@
 import React, { Component, useState } from 'react';
 
 import "./CSS/home.css"
-import { ProductList } from '../Model/Product/Product';
+import { Product, ProductList } from '../Model/Product/Product';
 import { Link } from 'react-router-dom';
 import CommonNavationBar from '../Screens/Common/NavigationBar';
 import AppHeader from './Common/AppHeader';
 import AppFooter from './Common/AppFooter';
 import AuthService from '../Service/AuthService';
-
+import api from '../Service/APIService';
+import APIKeyboard from '../Common/APISList';
 export default class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
 
-      proList: new ProductList(),
+      proList: []
 
     }
 
   }
   componentDidMount() {
-    const authService = new AuthService();
-    const getDummyData = authService.getDummyData();
-    this.state.proList = getDummyData;
-    this.setState({});
+  
+    api.postData(APIKeyboard.getAllProducts, {})
+    .then((response) => {
+      if (response.status && response.data) {
+       
+        const productList = response.data.map((item) => {
+          return new Product(
+            item.id,
+            item.description,
+            item.image,
+            item.pricing,
+            item.shippingcost,
+            0 // Assuming the quantity is initialized as 0
+          );
+        });
+        this.setState({ proList: productList });
+        console.log('Products retrieved successfully:', this.productList.list.length);
+      } else {
+        console.log('Failed to retrieve products:', response.message);
+      }
+    })
+    .catch((error) => {
+      console.log('Failed to retrieve products:', error.message);
+    });
+  
+   this.setState({});
   }
+  
 
   render() {
     const arrayChunk = (arr, n) => {
@@ -37,6 +61,9 @@ export default class Home extends Component {
 
     return (
       <div className='body'>
+
+{this.state.proList.length}
+        
         <AppHeader />
         <CommonNavationBar></CommonNavationBar>
         <br></br>
@@ -44,10 +71,10 @@ export default class Home extends Component {
           <img src="https://edge.disstg.commercecloud.salesforce.com/dw/image/v2/BDFX_STG/on/demandware.static/-/Library-Sites-toys-global/default/dwedfbe4d7/images/pages/brand-pages/educational-toys-cb-header-d-e.jpg" alt="img 1"></img>
         </div>
         <br></br>
-        {arrayChunk([...Array(this.state.proList.list.length).keys()], 3).map((row, i) => (
+        {arrayChunk([...Array(this.state.proList.length).keys()], 3).map((row, i) => (
           <div key={i} class="grid">
             {row.map((col, i) => (
-              <ItemCard item={this.state.proList.list[col]} ></ItemCard>
+              <ItemCard item={this.state.proList[col]} ></ItemCard>
             ))}
           </div>
         ))}

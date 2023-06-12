@@ -1,21 +1,60 @@
 import { useParams } from 'react-router-dom';
  import React, { useState } from 'react';
-import { ProductList } from '../Model/Product/Product';
+import { Product, product } from '../Model/Product/Product';
 import AuthService from '../Service/AuthService';
 import AppHeader from './Common/AppHeader';
 import CommonNavationBar from './Common/NavigationBar';
 import './CSS/ProductPage.css';
+import api from '../Service/APIService';
+import APIKeyboard from '../Common/APISList';
 
 const ProductPage = () => {
   const { id } = useParams();
-  let productList = new ProductList();
-  const [comments, setComments] = useState([]);
+  const [isload, setLoad] = useState(false);
+  const [product, setProduct] = useState(null);
+ 
   const [newComment, setNewComment] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
   const getData = () => {
     const authService = new AuthService();
-   
-   productList = authService.getDummyData();
+    const params = {
+      product_id: id,
+    };
+    api.getData(APIKeyboard.getProductByID, {})
+    .then((response) => {
+      if (response.status &&response.data) {
+        const comments = response.data.comments.map((comment) => {
+          return new Comment(
+            comment.id,
+            comment.product_id,
+            comment.user_id,
+            comment.rating,
+            comment.comment_text,
+            comment.image
+          );
+        });
+        
+        const pro =   new Product(
+            response.data.id,
+            response.data.description,
+            response.data.image,
+            response.data.pricing,
+            response.data.shippingcost,
+            0 ,
+            comments
+          );
+            console.log(pro.comment.length);
+      setProduct(pro);
+      setLoad(true);
+        
+        console.log('Products retrieved successfully:', this.pro.length);
+      } else {
+        console.log('Failed to retrieve products:', response.message);
+      }
+    })
+    .catch((error) => {
+      console.log('Failed to retrieve products:', error.message);
+    });
 }
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
@@ -25,38 +64,41 @@ const ProductPage = () => {
     setSelectedImage(URL.createObjectURL(event.target.files[0]));
   };
 
-  const handleAddComment = () => {
-    if (newComment.trim() !== '') {
-      setComments([...comments, { comment: newComment, image: selectedImage }]);
-      setNewComment('');
-      setSelectedImage(null);
-    }
-  };
+  // const handleAddComment = () => {
+  //   if (newComment.trim() !== '') {
+  //     setComments([...comments, { comment: newComment, image: selectedImage }]);
+  //     setNewComment('');
+  //     setSelectedImage(null);
+  //   }
+  // };
   const [inputValue, setInputValue] = useState('');
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
-  const index= id - 1;
+  const index= id;
   getData();
+  if (!isload) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
 <AppHeader></AppHeader>
 <CommonNavationBar>   </CommonNavationBar>
-    
+
     <div className="product-page">
       <div className="product-image-container">
-        <img src={productList.list[index].img} alt="Product" className="product-image" />
+        <img src={product.img} alt="Product" className="product-image" />
       </div>
       <div>
         <div className="product-details">
-        <h2 className="product-name">{productList.list[index].name}</h2>
+        <h2 className="product-name">{product.name}</h2>
 
-        <h2 className="product-description">{productList.list[index].des}</h2>
-        <p className="product-price">Price: ${productList.list[index].price}</p>
+        <h2 className="product-description">{product.des}</h2>
+        <p className="product-price">Price: ${product.price}</p>
 
        
         <div >
-          <input className='product-textarea' type='text' list='listid' placeholder={productList.list[index].quantity} value={inputValue}
+          <input className='product-textarea' type='text' list='listid' value={inputValue}
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
@@ -84,16 +126,19 @@ const ProductPage = () => {
     </div> 
     <div className="comment-input">
       <h2 className="comments-heading">Customer Reviews</h2>
-      {comments.length === 0 ? (
+     
+   
+      {product.comment.length === 0 ? (
         <p className="no-comments">No customer reviews yet.</p>
-      ) : (
+      ) : 
+      (
         <ul className="comment-list">
-          {comments.map((comment, index) => (
-            <li key={index} className="comment-item">
-              {comment.comment}
-              {comment.image && <img src={comment.image} alt="Comment" className="comment-image" />}
-            </li>
-          ))}
+          {product.comment.map((comment,) => (
+  <li key={comment.id} className="comment-item">
+    {comment.comment_text}
+    {comment.image && <img src={comment.image} alt="Comment" className="comment-image" />}
+  </li>
+))}
         </ul>
       )}
         <textarea
@@ -103,7 +148,7 @@ const ProductPage = () => {
           className="comment-textarea"
         />
         <input type="file" accept="image/*" onChange={handleImageChange} className="image-input" />
-        <button onClick={handleAddComment} className="add-comment-btn">Submit</button>
+        <button  className="add-comment-btn">Submit</button>
       </div> 
     </div>
   );

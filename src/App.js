@@ -22,7 +22,7 @@ class App extends Component {
   componentDidMount(){
     
     const authService = new AuthService();
-    authService.setDummyData();
+    
     authService.setCart();
 
 

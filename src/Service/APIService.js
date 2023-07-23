@@ -1,25 +1,59 @@
-import axios from 'axios';
+import React from "react";
+import api from "./APIMethodService";
+import APIKeyboard from "../Common/APISList";
+import CustomAlert from "../Common/CommonSnackBar";
+ class APIService extends React.Component{
 
-const api = {};
+    async login(formData){
+       
+        try {
+            const response = await api.postData(APIKeyboard.login, formData);
+            
+            return response;
+        }
+        catch {
+            window.alert(APIKeyboard.internalError)
+            return null;
+        }
+      
+        
+    }
 
-api.postData = async (url, data) => {
-  try {
-    const response = await axios.post(url, data);
-    return response.data;
-  } catch (error) {
-    console.error('Error while making POST request:', error);
-    throw error;
-  }
+   async registerUser(formData){
+       
+        try {
+            const response = await api.postData(APIKeyboard.registerUser, formData);
+            
+            return response;
+        }
+        catch {
+           window.alert(APIKeyboard.internalError)
+        }
+      
+        
+    }
+    async getCart(params){
+        try {
+            const response = await api.getData(APIKeyboard.getCart, params);
+            
+            return response;
+        }
+        catch {
+           window.alert(APIKeyboard.internalError)
+        }
+    }
+    async removeCart(params){
+        try {
+            const response = await api.postData(APIKeyboard.deleteCart, params);
+            
+            return response;
+        }
+        catch {
+           window.alert(APIKeyboard.internalError)
+        }
+    }
+render(){
+    return null;
 };
-
-api.getData = async (url, params) => {
-  try {
-    const response = await axios.get(url, { params });
-    return response.data;
-  } catch (error) {
-    console.error('Error while making GET request:', error);
-    throw error;
-  }
-};
-
-export default api;
+}
+export default APIService;

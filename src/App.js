@@ -24,6 +24,10 @@ class App extends Component {
     const authService = new AuthService();
     
     authService.setCart();
+    if(!localStorage.key(KeyWords.Users)){
+      authService.setGuestMode();
+    }
+    
 
 
   }

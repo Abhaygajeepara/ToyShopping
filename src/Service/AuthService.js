@@ -2,8 +2,12 @@ import KeyWords from "../Common/GeneralEnum";
 import React from 'react';
 import { ProductList } from "../Model/Product/Product";
 import { AddCart } from "../Model/Order/AddCart";
-
+import api from './APIMethodService';
+import APIKeyboard from "../Common/APISList";
+import APIService from "./APIService";
+import { User } from "../Model/User/User";
 class AuthService extends React.Component {
+   apiService = new APIService();
        getKeyboard  = (keyword)=>  {
         return localStorage.getItem(keyword);
     }
@@ -16,18 +20,35 @@ class AuthService extends React.Component {
       
       this.setCart();
     }
+    setGuestMode = ()=>{
+      const guestUser = new User(0,"","Guest","");
+      this.localUser(guestUser);
+    }
    changeLoginStatus = (value)=>{
         localStorage.setItem(KeyWords.IsLogin,value);
         window.location.reload();
     }
      logout = ()=>{
          localStorage.removeItem(KeyWords.IsLogin,);
+this.setGuestMode();
         //    localStorage.removeItem(KeyWords.Users,);
     }
-    setUser = (user)=>{
-      const usreRef =  JSON.stringify(user);
-        localStorage.setItem(KeyWords.Users,usreRef);
-       
+    login = async(email, password)=>{
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("password", password);
+      const result=   await   this.apiService.login(formData);
+       return result;
+    }
+    registerUser = async(email,password, username,shipping_address)=>{
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("username", username);
+      formData.append("shipping_address", shipping_address);
+
+      const result=   await   this.apiService.registerUser(formData);
+       return result;
     }
     updateUser = (userData)=>{
       
@@ -40,6 +61,11 @@ class AuthService extends React.Component {
         
         return JSON.parse(user);
     }
+    getuserId = ()=>{
+      const user = this.getUser();
+      
+      return user.userId;
+    }
     getUserName = ()=>{
         const user = localStorage.getItem(KeyWords.Users);
         const IsLogIn = localStorage.getItem(KeyWords.IsLogin);
@@ -51,6 +77,11 @@ class AuthService extends React.Component {
         else{
 return "Guest"
         }   
+    }
+    localUser = (user)=>{
+      const usreRef =  JSON.stringify(user);
+        localStorage.setItem(KeyWords.Users,usreRef);
+       
     }
     
     // setDummyData = () =>{
@@ -88,25 +119,74 @@ return "Guest"
         const proRef =  JSON.stringify(proList);
         localStorage.setItem(KeyWords.AddCart,proRef);
     }
-    getCart = () => {
-      const checkKeyboardExist =  localStorage.getItem(KeyWords.AddCart);
-       return JSON.parse(checkKeyboardExist);
+    getCart =async (params) => {
+   var result =   this.apiService.getCart(params);
+   return result;
+    }
+    removeCart = async(productID)=>{
+      const formData = new FormData();
+      const user = this.getUser();
+      formData.append('productId', parseInt(productID));
+      formData.append('userId',parseInt(user.userId));
+      console.log(formData);
+    var result =  await this.apiService.removeCart(formData);
+      return result 
     }
     
-    addcartAndUpdate=(inputValue,item)=>{
+    addcartAndUpdate=async (quantity,productId)=>{
+      const user = this.getUser();
+      const formData = new FormData();
       
-      const getDummyData = this.getDummyData();
-      const cartData = this.getCart();
-      if (inputValue != null && inputValue > 0) {
-        getDummyData.list[item.id - 1].quantity = inputValue;
-        cartData.addCartlist.push(item.id);
-        const uniqueList = [...new Set(cartData.addCartlist)];
-        cartData.addCartlist = uniqueList;
-        this.updateCart(cartData);
-        this.updateDummyData(getDummyData);
-      }
+      formData.append('productId', parseInt(productId));
+      formData.append('quantities', parseInt(quantity));
+      formData.append('userId',parseInt( user.userId));
+     
+     await api.postData(APIKeyboard.addTocart, formData)
+        .then((response) => {
+          if (response.status && response.data) {
+            console.log('Successfully added to cart:', response.data.message);
+          } else {
+            console.log('Failed to add to cart:', response.message);
+          }
+        })
+        .catch((error) => {
+          console.log('Failed to add to cart:', error.message);
+        });
+  
+     
+
+     // const getDummyData = this.getDummyData();
+      // const cartData = this.getCart();
+      // if (inputValue != null && inputValue > 0) {
+      //   getDummyData.list[item.id - 1].quantity = inputValue;
+      //   cartData.addCartlist.push(item.id);
+      //   const uniqueList = [...new Set(cartData.addCartlist)];
+      //   cartData.addCartlist = uniqueList;
+      //   this.updateCart(cartData);
+      //   this.updateDummyData(getDummyData);
+      // }
     }
 
+     createFormData = (dataObject) => {
+      const formData = new FormData();
+    
+      // Loop through the keys of the dataObject
+      for (const key in dataObject) {
+        if (Object.prototype.hasOwnProperty.call(dataObject, key)) {
+          const value = dataObject[key];
+    
+          // Check if the value is a File or Blob object
+          if (value instanceof File || value instanceof Blob) {
+            formData.append(key, value);
+          } else {
+            // Convert other values to strings before appending
+            formData.append(key, String(value));
+          }
+        }
+      }
+    
+      return formData;
+    };
   render() {
     return null; 
   }

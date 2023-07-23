@@ -1,61 +1,78 @@
 import { useParams } from 'react-router-dom';
  import React, { useState } from 'react';
-import { Product, product } from '../Model/Product/Product';
+import { Comment, Product, product } from '../Model/Product/Product';
 import AuthService from '../Service/AuthService';
 import AppHeader from './Common/AppHeader';
 import CommonNavationBar from './Common/NavigationBar';
 import './CSS/ProductPage.css';
-import api from '../Service/APIService';
+import api from '../Service/APIMethodService';
 import APIKeyboard from '../Common/APISList';
+import { useEffect } from 'react';
 
 const ProductPage = () => {
   const { id } = useParams();
   const [isload, setLoad] = useState(false);
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState(new Product());
  
   const [newComment, setNewComment] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
-  const getData = () => {
-    const authService = new AuthService();
-    const params = {
-      product_id: id,
-    };
-    api.getData(APIKeyboard.getProductByID, {})
-    .then((response) => {
-      if (response.status &&response.data) {
-        const comments = response.data.comments.map((comment) => {
-          return new Comment(
-            comment.id,
-            comment.product_id,
-            comment.user_id,
-            comment.rating,
-            comment.comment_text,
-            comment.image
-          );
-        });
+
+  useEffect(() => {
+    console.log(id);
+    const getData = () => {
+      const authService = new AuthService();
+      const params = {
+        product_id: parseInt(id), 
+      };
+      api.getData(APIKeyboard.getProductByID, params)
+      .then((response) => {
         
-        const pro =   new Product(
-            response.data.id,
-            response.data.description,
-            response.data.image,
-            response.data.pricing,
-            response.data.shippingcost,
-            0 ,
-            comments
-          );
-            console.log(pro.comment.length);
-      setProduct(pro);
-      setLoad(true);
+  
+        if (response.status &&response.data) {
+          var comments =[];
+          if(response.data.comments)
+          {
+           
+            comments = response.data.comments.map((comment) => {
+              return new Comment(
+                comment.id,
+                comment.product_id,
+                comment.user_id,
+                comment.rating,
+                comment.comment_text,
+                comment.image
+              );
+            });
+          }
         
-        console.log('Products retrieved successfully:', this.pro.length);
-      } else {
-        console.log('Failed to retrieve products:', response.message);
-      }
-    })
-    .catch((error) => {
-      console.log('Failed to retrieve products:', error.message);
-    });
-}
+          
+          const pro =   new Product(
+              response.data.id,
+              response.data.description,
+              response.data.image,
+              response.data.pricing,
+              response.data.shippingcost,
+              0 ,
+              comments
+            );
+             pro.comment.map((c)=>console.log(c.id));
+        setProduct(pro);
+        setLoad(true);
+        console.log(pro);
+          console.log('Products retrieved successfully:', this.product.length);
+        } else {
+          console.log('Failed to retrieve products:', response.message);
+        }
+      })
+      .catch((error) => {
+        console.log('Failed to retrieve products:', error.message);
+      });
+  }
+getData();
+
+  }, []);
+
+  
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
   };
@@ -76,7 +93,7 @@ const ProductPage = () => {
     setInputValue(event.target.value);
   };
   const index= id;
-  getData();
+
   if (!isload) {
     return <div>Loading...</div>;
   }
@@ -107,7 +124,7 @@ const ProductPage = () => {
           </datalist>
           <button class="update-button" onClick={() => {
                       const authService = new AuthService();
-                       const getDummyData = authService.getDummyData();
+                      //  const getDummyData = authService.getDummyData();
                       // const cartData = authService.getCart();
 
                       // if (inputValue != null) {
@@ -115,8 +132,9 @@ const ProductPage = () => {
                       // }
                       // authService.updateCart(cartData);
                       // authService.updateDummyData(getDummyData);
-                      authService.addcartAndUpdate(inputValue, getDummyData.list[ index])
-                      window.location.reload();
+                      
+                      authService.addcartAndUpdate(inputValue, id, )
+                      // window.location.reload();
                     }}><i class="fas fa-sync-alt"></i> Update</button>
         </div>
      
@@ -124,23 +142,12 @@ const ProductPage = () => {
       </div>
       </div>
     </div> 
+    
     <div className="comment-input">
       <h2 className="comments-heading">Customer Reviews</h2>
-     
+      
    
-      {product.comment.length === 0 ? (
-        <p className="no-comments">No customer reviews yet.</p>
-      ) : 
-      (
-        <ul className="comment-list">
-          {product.comment.map((comment,) => (
-  <li key={comment.id} className="comment-item">
-    {comment.comment_text}
-    {comment.image && <img src={comment.image} alt="Comment" className="comment-image" />}
-  </li>
-))}
-        </ul>
-      )}
+     
         <textarea
           placeholder="Write a customer review"
           value={newComment}
@@ -149,6 +156,23 @@ const ProductPage = () => {
         />
         <input type="file" accept="image/*" onChange={handleImageChange} className="image-input" />
         <button  className="add-comment-btn">Submit</button>
+        {product.comment.length === 0 ? (
+        <p className="no-comments">No customer reviews yet.</p>
+      ) : 
+      (
+        <div className="comment-list">
+          {product.comment.map((comment) => (
+
+  
+  <div>
+  {comment.commentText}
+     <img src={comment.image} alt="Comment" className="comment-image" />
+
+  </div>
+  
+))}
+        </div>
+      )}
       </div> 
     </div>
   );

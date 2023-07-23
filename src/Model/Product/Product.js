@@ -19,6 +19,19 @@ export class Product{
     }
   }
 
+  export class CartProduct{
+    constructor(productId,img,des,quantity,userId,price) {
+      this.productId = productId;
+     
+      this.img = img;
+      this.des = des;
+      this.price = price
+      this.quantity =quantity;
+      this.userId = userId;
+      
+    }
+  }
+
   export class Comment {
     constructor(id, productId, userId, rating, commentText, image) {
       this.id = id;

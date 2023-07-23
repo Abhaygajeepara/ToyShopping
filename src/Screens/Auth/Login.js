@@ -5,7 +5,8 @@ import KeyWords from '../../Common/GeneralEnum';
 import AuthService from '../../Service/AuthService';
 import { User } from '../../Model/User/User';
 import { useNavigate } from 'react-router-dom';
-
+import CustomAlert from '../../Common/CommonSnackBar';
+import APIService from '../../Service/APIService';
 class Login extends Component {
   
   constructor(props) {
@@ -15,7 +16,9 @@ class Login extends Component {
       loginPassword: '',
       loginStatus: '',
       registerUsername: '',
+      registeremail: '',
       registerPassword: '',
+      registerShippingAddress: '',
       registrationStatus: '',
       showLogin: true,
       isPopUp :false,
@@ -37,24 +40,29 @@ componentDidMount(){
     this.setState({ loginPassword: event.target.value });
   };
 
-  handleLogin = () => {
+  handleLogin =async () => {
     
    
     const authService = new AuthService();
-    const user = authService.getUser();
    
-    if(authService.getKeyboard(KeyWords.Users)){
-    if( this.state.loginUsername === user.gmail  && user.password === this.state.loginPassword){
+    if(this.validateEmail(this.state.loginUsername.trim())&&this.state.loginUsername.trim().length>0 ){
+      const result = await authService.login(this.state.loginUsername,this.state.loginPassword);
+      console.log(result);
+      if(result['message']==="Wrong credential"){
+        window.alert("Wrong credential");
+      }
+     
+     else if(result.status === true){
+      const user =  
+      new User(result.data['id'],result.data['email'],result.data['username'],result.data['shipping_address'])
+      authService.localUser(user);
       authService.changeLoginStatus(true);
+      window.alert("Login Sucessful");
       window.history.back();
+     }
+    }
     
-    }
-    else{
-      window.alert('invalid credentials');
-    }}
-    else{
-      window.alert('Register first');
-    }
+   
     
    
     this.setState({ loginUsername: '', loginPassword: '' });
@@ -67,14 +75,36 @@ componentDidMount(){
   handleRegisterPasswordChange = (event) => {
     this.setState({ registerPassword: event.target.value });
   };
-
-  handleRegister = () => {
-    const authService = new AuthService();
-    const  user = new User("1",this.state.registerUsername,this.state.registerPassword,"");
-   authService.setUser(user);
-  
-    this.setState({ registerUsername: '', registerPassword: '',showLogin: true });
+  handleRegisterEmailChange = (event) => {
+    this.setState({ registeremail: event.target.value });
   };
+
+  handleRegisterShippingAddressChange = (event) => {
+    this.setState({ registerShippingAddress: event.target.value });
+  };
+
+  handleRegister = async()  => {
+    if(this.state.registerUsername.trim().length ===0 
+    && this.state.registerShippingAddress.trim().length === 0 ){
+      window.alert('Please enter all the required fields.');
+    }else if(this.state.registerPassword.trim().length <4){
+      window.alert('Password should be 4 digits long');
+    }
+    else if(!this.validateEmail(this.state.registeremail.trim())){
+      window.alert('invalid email');
+    }
+    else {
+        
+        const authService = new AuthService();
+  const result=   await   authService.registerUser(this.state.registeremail,this.state.registerPassword,this.state.registerUsername,this.state.registerShippingAddress);
+      
+        console.log(result['status'])
+        if(result['status']===true){
+         window.alert("User registered successfully");
+       }
+        this.setState({ registerUsername: '', registerPassword: '',showLogin: true });
+      }
+      };
 
   showRegistrationPage = () => {
     this.setState({ loginStatus: '', registrationStatus: '', showLogin: false });
@@ -83,6 +113,10 @@ componentDidMount(){
   showLoginPage = () => {
     this.setState({ loginStatus: '', registrationStatus: '', showLogin: true });
   };
+  validateEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  }
 
   render() {
     const {
@@ -90,6 +124,8 @@ componentDidMount(){
       loginPassword,
       loginStatus,
       registerUsername,
+      registerEmail,
+      registerAddress,
       registerPassword,
       registrationStatus,
       showLogin,
@@ -129,10 +165,23 @@ componentDidMount(){
               placeholder="Username"
             />
             <input
+              type="text"
+              value={registerEmail}
+              onChange={this.handleRegisterEmailChange}
+              placeholder="Email"
+            />
+            
+            <input
               type="password"
               value={registerPassword}
               onChange={this.handleRegisterPasswordChange}
               placeholder="Password"
+            />
+<input
+              type="text"
+              value={registerAddress}
+              onChange={this.handleRegisterShippingAddressChange}
+              placeholder="Address"
             />
             <button onClick={this.handleRegister}>Register</button>
             <div className="status">{registrationStatus}</div>

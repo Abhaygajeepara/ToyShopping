@@ -8,7 +8,7 @@ import CommonNavationBar from '../Screens/Common/NavigationBar';
 import AppHeader from './Common/AppHeader';
 import AppFooter from './Common/AppFooter';
 import AuthService from '../Service/AuthService';
-import api from '../Service/APIService';
+import api from '../Service/APIMethodService';
 import APIKeyboard from '../Common/APISList';
 export default class Home extends Component {
   constructor(props) {
@@ -120,7 +120,7 @@ function ItemCard(props) {
           <button className="buyButton" onClick={(() => {
            
            const authService = new AuthService();
-           authService.addcartAndUpdate(inputValue,item)
+           authService.addcartAndUpdate(inputValue,item.id)
 
 
           })}> Add to Cart</button>

@@ -108,3 +108,25 @@
 .update-button{
   width: 100px;
 }
+.comment-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  max-width: 400px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+/* Style for the comment text */
+.comment-text {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* Style for the comment image */
+.comment-image {
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

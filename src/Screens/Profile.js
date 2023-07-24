@@ -29,7 +29,7 @@ const ProfilePage = () => {
   const [success, setSuccess] = useState(false);
  
    
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange =async (e) => {
     e.preventDefault();
 
     
@@ -38,11 +38,11 @@ const ProfilePage = () => {
       return;
     }
    
-    
-       if(currentPassword === user.password){
-        user.password  = newPassword
-        auth.updateUser(user);
-       } 
+   var result = await auth.updatePassword(currentPassword,newPassword,confirmPassword);
+   if(result.status){
+    window.alert("Password updated successfully");
+   }
+        
     
     setCurrentPassword('');
     setNewPassword('');
@@ -51,11 +51,15 @@ const ProfilePage = () => {
     setSuccess(true);
   };
  
-  const handleAddressUpdate = (e) => {
+  const handleAddressUpdate = async(e) => {
     e.preventDefault();
-    const address =new Address(street,city,province);
-    user.address = address;
-    auth.updateUser(user);
+   
+    const sentAddress = street + ", " + city + ", " + province;
+    var result = await auth.updateAddress(sentAddress);
+   if(result.status){
+    window.alert("Address updated successfully");
+   }
+   
     
     setSuccess(true);
   };

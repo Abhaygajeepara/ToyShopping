@@ -32,6 +32,32 @@ import CustomAlert from "../Common/CommonSnackBar";
       
         
     }
+    async updatePassword(formData){
+       
+        try {
+            const response = await api.postData(APIKeyboard.updatePassword, formData);
+            
+            return response;
+        }
+        catch {
+           window.alert(APIKeyboard.internalError)
+        }
+      
+        
+    }
+    async updateAddress(formData){
+       
+        try {
+            const response = await api.postData(APIKeyboard.updateAddress, formData);
+            
+            return response;
+        }
+        catch {
+           window.alert(APIKeyboard.internalError)
+        }
+      
+        
+    }
     async getCart(params){
         try {
             const response = await api.getData(APIKeyboard.getCart, params);
@@ -45,6 +71,27 @@ import CustomAlert from "../Common/CommonSnackBar";
     async removeCart(params){
         try {
             const response = await api.postData(APIKeyboard.deleteCart, params);
+            
+            return response;
+        }
+        catch {
+           window.alert(APIKeyboard.internalError)
+        }
+    }
+
+    async addOrder(params){
+        try {
+            const response = await api.postData(APIKeyboard.addOrder, params);
+            
+            return response;
+        }
+        catch {
+           window.alert(APIKeyboard.internalError)
+        }
+    }
+    async deleteEntireCart(params){
+        try {
+            const response = await api.postData(APIKeyboard.deleteEntrieCart, params);
             
             return response;
         }

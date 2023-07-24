@@ -13,6 +13,7 @@ import { CartProduct } from "../Model/Product/Product";
 export default function Cart() {
   const [isload, setLoad] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    var [OrderItemList, setOrderItems] = useState([]);
     const handleChange = (event) => {
         setInputValue(event.target.value);
     };
@@ -60,10 +61,16 @@ export default function Cart() {
     }, []);
     const getData = () => {
         const authService = new AuthService();
-       
-        cartData.addCartlist.map((data) => (
-          total += data.price *parseInt(data.quantity)
-        ));
+      
+        cartData.addCartlist.forEach((data)=>{
+          total += data.price *parseInt(data.quantity);
+        });
+         OrderItemList = cartData.addCartlist.map((cart) => ({
+          productId: cart.productId,
+          qty: cart.quantity,
+        }));
+               
+        
     }
      
     getData();
@@ -137,10 +144,14 @@ export default function Cart() {
        
       </div>
       <div class="chechout-container">
-  <button class="checkout-button" onClick={()=>{
-    alert('Your order has been placed!');
+  <button class="checkout-button" onClick={async()=>{
+   
     const authService = new AuthService();
-    authService.clear();
+   
+  var result = await authService.addOrder(total,JSON.stringify(OrderItemList));
+  if(result.status){
+    alert('Your order has been placed!');
+  }
       
 window.location.reload();
   }}>Checkout</button>

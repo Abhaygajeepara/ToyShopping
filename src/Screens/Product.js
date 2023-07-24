@@ -164,11 +164,12 @@ getData();
           {product.comment.map((comment) => (
 
   
-  <div>
+<div class="comment-container">
+<div class="comment-text">
   {comment.commentText}
-     <img src={comment.image} alt="Comment" className="comment-image" />
-
-  </div>
+</div>
+<img src={comment.image} alt="Comment" class="comment-image" />
+</div>
   
 ))}
         </div>

@@ -56,6 +56,28 @@ this.setGuestMode();
         localStorage.setItem(KeyWords.Users,usreRef);
        
     }
+    updatePassword = async(oldPassword,newPassword,confirmPassword)=>{
+      const user = this.getUser();
+      const formData = new FormData();
+      
+     formData.append('currentPassword', oldPassword);
+     formData.append('newPassword', newPassword);
+     formData.append('confirmPassword', confirmPassword);
+     formData.append('userId', parseInt(user.userId));
+var result = await this.apiService.updatePassword(formData);
+     return result;
+
+    }
+    updateAddress = async(address)=>{
+      const user = this.getUser();
+      const formData = new FormData();
+      
+     formData.append('address',address);
+     formData.append('userId', parseInt(user.userId));
+var result = await this.apiService.updateAddress(formData);
+     return result;
+
+    }
     getUser = ()=>{
         const user = localStorage.getItem(KeyWords.Users);
         
@@ -187,6 +209,24 @@ return "Guest"
     
       return formData;
     };
+
+    addOrder=async (totalAmount,items)=>{
+
+      const formData = new FormData();
+      const user = this.getUser();
+      formData.append('user_id', parseInt(user.userId));
+      formData.append('total_amount', parseInt(totalAmount));
+      formData.append('shipping_address',parseInt(user.address));
+      formData.append('items', items);
+      console.log(items);
+    var result= await this.apiService.addOrder(formData);
+    if(result.status === true){
+      const deleteFormData = new FormData();
+      deleteFormData.append('userId', parseInt(user.userId));
+      await this.apiService.deleteEntireCart(deleteFormData);
+    }
+    return result;
+    }
   render() {
     return null; 
   }

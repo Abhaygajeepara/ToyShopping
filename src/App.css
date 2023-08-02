@@ -15,11 +15,12 @@
   font-style: italic;
   font-size: medium;
   box-shadow: inset;
-  background-color: red;
+  background-color: hwb(0 20% 20% / 0.909);
 }
 
 .header-banner ptag {
    padding-top: 10px;
+   display: flex;
 }
 
 .body {
@@ -27,7 +28,7 @@
 }
 
 .header-uppper-strip  {
-  background-color: red;
+  background-color: rgb(69, 8, 8);
  }
 
 .App-logo {
@@ -42,7 +43,7 @@
 }
 
 .App-header {
-  background-color: #e3e6ec;
+  background-color: #261282;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -89,5 +90,53 @@
   bottom: 0;
   width: 100%;
   justify-self: end;
-  background-color: var(--theme-color);
+  background-color: #261282
+}
+
+/* footer*/
+
+.app-footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  justify-self: end;
+  background-color: #261282
+}
+
+.site-footer {
+  background-color: #261282;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons-wrapper {
+  display: flex;
+}
+
+.social-icons {
+  margin-right: 10px;
+  color: #810f0f;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 5px;
+  color: #690a0a;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #edf0f3;
+}
+
+.footer-content p {
+  margin: 10px 0;
 }

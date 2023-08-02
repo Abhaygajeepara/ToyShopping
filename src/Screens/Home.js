@@ -37,7 +37,10 @@ export default class Home extends Component {
 
     return (
       <div className='body'>
-        <AppHeader />
+        <AppHeader>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-kI+K7i2XL9o26ux1klgpx3XkG2/DU0wq1LY7d1zVeMOGr2JwvQc7IkblYyXy7LZG" crossorigin="anonymous">
+          </link>
+        </AppHeader>  
         <CommonNavationBar></CommonNavationBar>
         <div className="bannerImg">
           <img src="https://edge.disstg.commercecloud.salesforce.com/dw/image/v2/BDFX_STG/on/demandware.static/-/Library-Sites-toys-global/default/dwedfbe4d7/images/pages/brand-pages/educational-toys-cb-header-d-e.jpg" alt="img 1"></img>
@@ -63,21 +66,21 @@ function ItemCard(props) {
     setInputValue(event.target.value);
   };
   const item = props.item;
-  return <div class="item">
+  return <div class="item-card">
 
     <Link
       to={`productScreen/${item.id}`}
     >
-    <img src={item.img} alt={item.name} className="itemImg">
+    <img src={item.img} alt={item.name} className="item-img">
       </img>
     </Link>
-    <div className='card-bottom'>
+    <div className='item-details'>
       <div>
-        <div>{item.name}</div>
-        <div> {item.des}</div></div>
-      <div className='card-bottom-right'>
+        <div className='item-name'>{item.name}</div>
+        <div className='item-description'> {item.des}</div></div>
+      <div className='item-bottom'>
         <div >
-          <input className='textarea' type='text' list='listid' value={inputValue}
+          <input className='quantity-input' type='text' list='listid' value={inputValue}
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
@@ -86,8 +89,8 @@ function ItemCard(props) {
           </datalist>
 
         </div>
-        <div className='textArea'>
-          <div className="buyButton" onClick={(() => {
+        <div className='quantity-input'>
+          <div className="add-to-cart-button" onClick={(() => {
             const authService = new AuthService();
             const getDummyData = authService.getDummyData();
             const cartData = authService.getCart();

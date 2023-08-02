@@ -1,6 +1,5 @@
-/* Style the dropdown menu */
 .navbar {
-    background-color: #261282; /* Orange background color for the navbar */
+    background-color: #261282; 
     padding: 10px;
   }
   
@@ -18,31 +17,29 @@
   
   .navbar ul li a {
     text-decoration: none;
-    color: #fff; /* White text color for the main menu items */
+    color: #fff; 
     font-size: 16px;
     padding: 10px 20px;
     transition: background-color 0.3s, color 0.3s;
-    cursor: pointer; /* Set the cursor to a pointer (hand icon) */
+    cursor: pointer; 
   }
   
   .navbar ul li a:hover {
-    background-color: #ee7e11; /* Darker orange background color on hover */
-    color: #fff; /* White text color on hover */
+    background-color: #ee7e11; 
+    color: #fff; 
   }
   
-  /* Style the dropdown menu */
   .navbar ul ul {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #ee7e11; /* Darker orange background color for the dropdown menu */
+    background-color: #ee7e11;
     display: none;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3); /* Optional box shadow for the dropdown */
-    border-radius: 5px; /* Rounded corners for the dropdown */
-    z-index: 1; /* Ensure dropdown appears above other content */
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3); 
+    border-radius: 5px; 
+    z-index: 1; 
   }
   
-  /* Style the dropdown submenu items */
   .navbar ul ul li {
     padding: 10px;
   }

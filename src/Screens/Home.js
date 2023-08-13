@@ -62,9 +62,11 @@ export default class Home extends Component {
     return (
       <div className='body'>
 
-{this.state.proList.length}
-        
-        <AppHeader />
+        <AppHeader>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-kI+K7i2XL9o26ux1klgpx3XkG2/DU0wq1LY7d1zVeMOGr2JwvQc7IkblYyXy7LZG" crossorigin="anonymous">
+          </link>
+        </AppHeader>  
+
         <CommonNavationBar></CommonNavationBar>
         <br></br>
         <div className="bannerImg">
@@ -92,25 +94,25 @@ function ItemCard(props) {
     setInputValue(event.target.value);  
   };
   const item = props.item;
-  
-  return <div class="item">
+
+  return <div class="item-card">
+
 
     <Link
       to={`productScreen/${item.id}`}
     >
-    <img src={item.img} alt={item.name} className="itemImg">
+    <img src={item.img} alt={item.name} className="item-img">
       </img>
     </Link>
-    <div className='card-bottom'>
+    <div className='item-details'>
       <div>
-        <div>{item.name}</div>
-        <div> {item.des}</div></div>
-      
-    </div>
-    <div className='card-bottom-right'>
-      <h1>${item.price}</h1>
-        <div className='addcart-area' >
-          <input className='textarea' type='text' list='listid' placeholder={item.name.quantity} value={inputValue}
+
+        <div className='item-name'>{item.name}</div>
+        <div className='item-description'> {item.des}</div></div>
+      <div className='item-bottom'>
+        <div >
+          <input className='quantity-input' type='text' list='listid' value={inputValue}
+
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
@@ -125,6 +127,24 @@ function ItemCard(props) {
 
           })}> Add to Cart</button>
         </div>
+
+        <div className='quantity-input'>
+          <div className="add-to-cart-button" onClick={(() => {
+            const authService = new AuthService();
+            const getDummyData = authService.getDummyData();
+            const cartData = authService.getCart();
+            if (inputValue != null) {
+              getDummyData.list[item.id - 1].quantity = inputValue;
+              cartData.addCartlist.push(item.id);
+              const uniqueList = [...new Set(cartData.addCartlist)];
+              cartData.addCartlist = uniqueList;
+            }
+            authService.updateCart(cartData);
+            authService.updateDummyData(getDummyData);
+
+
+          })}><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
+
         </div>
         
 

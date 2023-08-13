@@ -2,30 +2,54 @@
 import React, { Component, useState } from 'react';
 
 import "./CSS/home.css"
-import { ProductList } from '../Model/Product/Product';
+import { Product, ProductList } from '../Model/Product/Product';
 import { Link } from 'react-router-dom';
 import CommonNavationBar from '../Screens/Common/NavigationBar';
 import AppHeader from './Common/AppHeader';
 import AppFooter from './Common/AppFooter';
 import AuthService from '../Service/AuthService';
-
+import api from '../Service/APIMethodService';
+import APIKeyboard from '../Common/APISList';
 export default class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
 
-      proList: new ProductList(),
+      proList: []
 
     }
 
   }
   componentDidMount() {
-    const authService = new AuthService();
-    const getDummyData = authService.getDummyData();
-    this.state.proList = getDummyData;
-    this.setState({});
+  
+    api.postData(APIKeyboard.getAllProducts, {})
+    .then((response) => {
+      if (response.status && response.data) {
+       
+        const productList = response.data.map((item) => {
+          return new Product(
+            item.id,
+            item.description,
+            item.image,
+            item.pricing,
+            item.shippingcost,
+            0 // Assuming the quantity is initialized as 0
+          );
+        });
+        this.setState({ proList: productList });
+        console.log('Products retrieved successfully:', this.productList.list.length);
+      } else {
+        console.log('Failed to retrieve products:', response.message);
+      }
+    })
+    .catch((error) => {
+      console.log('Failed to retrieve products:', error.message);
+    });
+  
+   this.setState({});
   }
+  
 
   render() {
     const arrayChunk = (arr, n) => {
@@ -37,18 +61,22 @@ export default class Home extends Component {
 
     return (
       <div className='body'>
+
         <AppHeader>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-kI+K7i2XL9o26ux1klgpx3XkG2/DU0wq1LY7d1zVeMOGr2JwvQc7IkblYyXy7LZG" crossorigin="anonymous">
           </link>
         </AppHeader>  
+
         <CommonNavationBar></CommonNavationBar>
+        <br></br>
         <div className="bannerImg">
           <img src="https://edge.disstg.commercecloud.salesforce.com/dw/image/v2/BDFX_STG/on/demandware.static/-/Library-Sites-toys-global/default/dwedfbe4d7/images/pages/brand-pages/educational-toys-cb-header-d-e.jpg" alt="img 1"></img>
         </div>
-        {arrayChunk([...Array(this.state.proList.list.length).keys()], 3).map((row, i) => (
+        <br></br>
+        {arrayChunk([...Array(this.state.proList.length).keys()], 3).map((row, i) => (
           <div key={i} class="grid">
             {row.map((col, i) => (
-              <ItemCard item={this.state.proList.list[col]} ></ItemCard>
+              <ItemCard item={this.state.proList[col]} ></ItemCard>
             ))}
           </div>
         ))}
@@ -61,12 +89,14 @@ export default class Home extends Component {
 }
 
 function ItemCard(props) {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState();
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value);  
   };
   const item = props.item;
+
   return <div class="item-card">
+
 
     <Link
       to={`productScreen/${item.id}`}
@@ -76,19 +106,28 @@ function ItemCard(props) {
     </Link>
     <div className='item-details'>
       <div>
+
         <div className='item-name'>{item.name}</div>
         <div className='item-description'> {item.des}</div></div>
       <div className='item-bottom'>
         <div >
           <input className='quantity-input' type='text' list='listid' value={inputValue}
+
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
             <option class='label2' value='2' />
             <option class='label3' value='3' />
           </datalist>
+          <button className="buyButton" onClick={(() => {
+           
+           const authService = new AuthService();
+           authService.addcartAndUpdate(inputValue,item.id)
 
+
+          })}> Add to Cart</button>
         </div>
+
         <div className='quantity-input'>
           <div className="add-to-cart-button" onClick={(() => {
             const authService = new AuthService();
@@ -105,10 +144,9 @@ function ItemCard(props) {
 
 
           })}><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
-        </div>
-      </div>
-    </div>
 
+        </div>
+        
 
 
   </div>

@@ -4,11 +4,15 @@ import AppHeader from './Common/AppHeader';
 import CommonNavationBar from './Common/NavigationBar';
 import './CSS/Profile.css';
 import AuthService from '../Service/AuthService';
+import KeyWords from '../Common/GeneralEnum';
 const ProfilePage = () => {
     let user = new User();
     const auth = new AuthService();
     const getUserDate = ()=>{
-        
+      const authService = new AuthService();
+      if(!authService.getKeyboard(KeyWords.IsLogin)){
+        window.history.back();
+       }
         user = auth.getUser();
        
     }
@@ -25,7 +29,7 @@ const ProfilePage = () => {
   const [success, setSuccess] = useState(false);
  
    
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange =async (e) => {
     e.preventDefault();
 
     
@@ -34,11 +38,11 @@ const ProfilePage = () => {
       return;
     }
    
-    
-       if(currentPassword === user.password){
-        user.password  = newPassword
-        auth.updateUser(user);
-       } 
+   var result = await auth.updatePassword(currentPassword,newPassword,confirmPassword);
+   if(result.status){
+    window.alert("Password updated successfully");
+   }
+        
     
     setCurrentPassword('');
     setNewPassword('');
@@ -47,11 +51,15 @@ const ProfilePage = () => {
     setSuccess(true);
   };
  
-  const handleAddressUpdate = (e) => {
+  const handleAddressUpdate = async(e) => {
     e.preventDefault();
-    const address =new Address(street,city,province);
-    user.address = address;
-    auth.updateUser(user);
+   
+    const sentAddress = street + ", " + city + ", " + province;
+    var result = await auth.updateAddress(sentAddress);
+   if(result.status){
+    window.alert("Address updated successfully");
+   }
+   
     
     setSuccess(true);
   };

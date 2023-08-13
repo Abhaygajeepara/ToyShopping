@@ -1,0 +1,79 @@
+[33mcommit df8ad84898a49716248beeb2b9a378a4af650bad[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: a474fb7 14b2e18
+Author: Abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Wed May 31 13:43:47 2023 -0400
+
+    Merge pull request #2 from Abhaygajeepara/raisa
+    
+    Modified Product details
+
+[33mcommit 14b2e1850c64d8c4cc6b81f2ecfc1f7dc586efde[m
+Author: raisabanu <hieitsraisu@gmail.com>
+Date:   Wed May 31 13:19:57 2023 -0400
+
+    Modified Product details
+
+[33mcommit a474fb7c9bebf23ad3131b22917a427eba53ca46[m
+Merge: 27e94c4 1e08779
+Author: Abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Wed May 31 12:37:57 2023 -0400
+
+    Merge pull request #1 from Abhaygajeepara/raisa
+    
+    Changes made to Improve UI
+
+[33mcommit 1e08779791bdec8013ea77ffdd53fdbdaee9b32e[m
+Author: raisabanu <hieitsraisu@gmail.com>
+Date:   Wed May 31 12:36:51 2023 -0400
+
+    Changes made to Improve UI
+    
+    Changes made to Improve UI
+
+[33mcommit 27e94c4820c17a1b821ad6ddb2d986144c9b6b11[m
+Author: abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Tue May 30 12:52:35 2023 -0400
+
+    functionality done
+
+[33mcommit b8d95e747af9edefcc8fe8e977cece376d98fcc6[m
+Author: abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Tue May 30 12:03:28 2023 -0400
+
+    functionality done
+
+[33mcommit 61246d71b19f9ba4e73e0c2824ce1a040698e46b[m
+Author: abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Tue May 30 12:00:29 2023 -0400
+
+    functionality done
+
+[33mcommit 1bb06964ce225539da674ca057cab52cfad628ad[m
+Author: abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Sun May 28 23:52:52 2023 -0400
+
+    add cart and local data
+
+[33mcommit cb1f0c61ae619e964d725199c9aa3747d7844a1c[m
+Author: abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Thu May 25 12:39:57 2023 -0400
+
+    route
+
+[33mcommit caa6bfd9e134a7e8642c8a3b9a24831c34882b8d[m
+Author: abhaygajeepara <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Thu May 25 11:45:57 2023 -0400
+
+    home screen
+
+[33mcommit c7879e17a1900215619b5ed32555ea3373c04891[m
+Author: Abhaygajeepara@gmail.com <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Wed May 24 16:21:46 2023 -0400
+
+    init
+
+[33mcommit e37b28ff34505a1187357aa6b28cfbd1d79f8a9d[m
+Author: Abhaygajeepara@gmail.com <56512543+Abhaygajeepara@users.noreply.github.com>
+Date:   Wed May 24 15:45:15 2023 -0400
+
+    Initialize project using Create React App

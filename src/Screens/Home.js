@@ -87,32 +87,31 @@ export default class Home extends Component {
   }
 
 }
-
 function ItemCard(props) {
   const [inputValue, setInputValue] = useState();
   const handleChange = (event) => {
     setInputValue(event.target.value);  
   };
   const item = props.item;
-
+  
   return <div class="item-card">
-
 
     <Link
       to={`productScreen/${item.id}`}
     >
-    <img src={item.img} alt={item.name} className="item-img">
+    <img src={item.img} alt={item.name} className="itemImg">
       </img>
     </Link>
-    <div className='item-details'>
+    <div className='card-bottom'>
       <div>
-
-        <div className='item-name'>{item.name}</div>
-        <div className='item-description'> {item.des}</div></div>
-      <div className='item-bottom'>
-        <div >
-          <input className='quantity-input' type='text' list='listid' value={inputValue}
-
+        <div>{item.name}</div>
+        <div> {item.des}</div></div>
+      
+    </div>
+    <div className='card-bottom-right'>
+      <h1>${item.price}</h1>
+        <div className='addcart-area' >
+          <input className='textarea' type='text' list='listid' placeholder={item.name.quantity} value={inputValue}
             onChange={handleChange} />
           <datalist id='listid' className='listid'>
             <option class='label1' value='1' />
@@ -127,24 +126,6 @@ function ItemCard(props) {
 
           })}> Add to Cart</button>
         </div>
-
-        <div className='quantity-input'>
-          <div className="add-to-cart-button" onClick={(() => {
-            const authService = new AuthService();
-            const getDummyData = authService.getDummyData();
-            const cartData = authService.getCart();
-            if (inputValue != null) {
-              getDummyData.list[item.id - 1].quantity = inputValue;
-              cartData.addCartlist.push(item.id);
-              const uniqueList = [...new Set(cartData.addCartlist)];
-              cartData.addCartlist = uniqueList;
-            }
-            authService.updateCart(cartData);
-            authService.updateDummyData(getDummyData);
-
-
-          })}><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
-
         </div>
         
 
@@ -154,5 +135,3 @@ function ItemCard(props) {
     ;
 
 }
-
-

@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+Setting Up Local Development Environment for e-Commerce Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To begin development on the e-commerce project utilizing PHP and the Apache server, it is imperative to establish a local development environment by adhering to the following comprehensive steps:
 
-## Available Scripts
+Step 1: Clone the PHP Backend Repository
 
-In the project directory, you can run:
+Launch a terminal or command prompt on your local workstation.
 
-### `npm start`
+Navigate to the destination directory where you intend to house the cloned repository.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Execute the subsequent command to clone the repository:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+sh
+Copy code
+git clone https://github.com/Abhaygajeepara/eCommercePHP.git
+This command shall effectively replicate the PHP backend codebase within a newly designated "eCommercePHP" directory.
 
-### `npm test`
+Step 2: Initiate myphpAdmin and Apache Server
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+It is paramount to ensure the presence of a suitable local development environment, such as XAMPP or WAMP, equipped with both Apache server and MySQL for myphpAdmin functionality.
+Access the local server control panel, for instance, the XAMPP Control Panel.
+Ascertain the commencement of services pertaining to both Apache server and MySQL by utilizing the control panel.
+Following the successful initiation of these services, access to phpMyAdmin shall be attainable through a web browser by navigating to the designated URL: http://localhost/phpmyadmin.

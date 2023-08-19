@@ -43,10 +43,34 @@ componentDidMount(){
     const authService = new AuthService();
     const user = authService.getUser();
    
+<<<<<<< Updated upstream
     if(authService.getKeyboard(KeyWords.Users)){
     if( this.state.loginUsername === user.gmail  && user.password === this.state.loginPassword){
+=======
+    if(this.state.loginUsername.trim().length ===0 
+    && this.state.loginPassword.trim().length === 0 ){
+      window.alert('Please enter all the required fields.');
+    }else  if(this.validateEmail(this.state.loginUsername.trim())&&this.state.loginUsername.trim().length>0 ){
+      const result = await authService.login(this.state.loginUsername,this.state.loginPassword);
+      console.log(result);
+      window.alert(result);
+      if(result["message"]==="Wrong credential"){
+        window.alert("Wrong credential");
+      }
+     else if(result.status === true){
+      const user =  
+      new User(result.data['id'],result.data['email'],result.data['username'],result.data['shipping_address'])
+      authService.localUser(user);
+>>>>>>> Stashed changes
       authService.changeLoginStatus(true);
       window.history.back();
+<<<<<<< Updated upstream
+=======
+     }
+    }else{
+      window.alert("Invalid Email");
+    }
+>>>>>>> Stashed changes
     
     }
     else{
@@ -76,6 +100,33 @@ componentDidMount(){
     this.setState({ registerUsername: '', registerPassword: '',showLogin: true });
   };
 
+<<<<<<< Updated upstream
+=======
+  handleRegister = async()  => {
+    if(this.state.registerUsername.trim().length ===0 
+    && this.state.registerShippingAddress.trim().length === 0 ){
+      window.alert('Please enter all the required fields.');
+    }else if(this.state.registerPassword.trim().length <4){
+      window.alert('Password should be 4 digits long');
+    }
+    else if(!this.validateEmail(this.state.registeremail.trim())){
+      
+      window.alert("invalid email");
+    }
+    else {
+        
+        const authService = new AuthService();
+  const result=   await   authService.registerUser(this.state.registeremail,this.state.registerPassword,this.state.registerUsername,this.state.registerShippingAddress);
+      
+        console.log(result['status'])
+        if(result['status']===true){
+         window.alert("User registered successfully");
+       }
+        this.setState({ registerUsername: '', registerPassword: '',showLogin: true });
+      }
+      };
+
+>>>>>>> Stashed changes
   showRegistrationPage = () => {
     this.setState({ loginStatus: '', registrationStatus: '', showLogin: false });
   };

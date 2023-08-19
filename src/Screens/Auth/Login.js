@@ -60,6 +60,8 @@ componentDidMount(){
       window.alert("Login Sucessful");
       window.history.back();
      }
+    }else{
+      window.alert("Invalid email");
     }
     
    

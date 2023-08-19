@@ -21,3 +21,7 @@ It is paramount to ensure the presence of a suitable local development environme
 Access the local server control panel, for instance, the XAMPP Control Panel.
 Ascertain the commencement of services pertaining to both Apache server and MySQL by utilizing the control panel.
 Following the successful initiation of these services, access to phpMyAdmin shall be attainable through a web browser by navigating to the designated URL: http://localhost/phpmyadmin.
+
+Step 3: Change localHost url
+![image](https://github.com/Abhaygajeepara/ToyShopping/assets/56512543/7e2e776f-39af-48e7-883e-f5432b8c731f)
+
